@@ -6,7 +6,7 @@
 #define T1_ORI_BTREENODE_H
 
 
-#include "GerenciadorDeBlocos.h"
+#include "GerenciadorDeBlocos.cpp"
 
 class BTreeNode {
     int *keys;  // Vetor com as chaves do nó

@@ -16,7 +16,6 @@ using namespace std;
 template<typename T>
 class GerenciadorDeBlocos {
     int tamanhoBloco;
-    FILE *arquivo;
     const char* nomeArquivo;
     ifstream leitura;
     ofstream escrita;

@@ -7,7 +7,6 @@
 
 
 #include "BTreeNode.h"
-#include "GerenciadorDeBlocos.h"
 
 using std::string;
 

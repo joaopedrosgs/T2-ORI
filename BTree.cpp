@@ -4,10 +4,11 @@
 
 #include "BTree.h"
 
+
 // Função para inserir uma chave na árvore
 
 BTree::BTree(int _t, const char *_nomeArquivo) : gerenciador(
-        GerenciadorDeBlocos<BTreeNode>(t * 2 * sizeof(int), nomeArquivo)) {
+        GerenciadorDeBlocos<BTreeNode>(_t * 2 * (int)sizeof(int), _nomeArquivo)) {
     nomeArquivo = _nomeArquivo;
     t = _t;
     atual = -1;

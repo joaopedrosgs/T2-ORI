@@ -1,7 +1,7 @@
 #include <locale.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "BTree.h"
+#include "BTreeNode.h"
 
 
 int main() {
