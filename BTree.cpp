@@ -41,8 +41,10 @@ void BTree::insert(int k) {
     // Se a árvore está vazia, cria o nó raíz e insere a chave nele
     if (atual < 0) {
         // Aloca memória para o nó
-        BTreeNode *bTreeNode = new BTreeNode;
+        BTreeNode *bTreeNode = new BTreeNode(t,true,&gerenciador);
         bTreeNode->keys[0] = k;  // Insere a chave
+        for(int i=0; i<(bTreeNode->ordem*2-1); i++)
+            std::cout << bTreeNode->keys[i] << std::endl;
         bTreeNode->numero_chaves = 1;  // Atualiza o número de chaves no nó
         bTreeNode->indice_no_arquivo = atual + 1;
         delete (bTreeNode);

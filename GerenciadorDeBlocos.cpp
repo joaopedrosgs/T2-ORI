@@ -10,7 +10,7 @@ template<typename T>
 bool GerenciadorDeBlocos<T>::ehValido() {
     char valido = '*';
     if (leitura.is_open()) {
-        //leitura.read(&valido, sizeof(char));
+        leitura.read((char *)&valido, sizeof(char));
         leitura.seekg(-sizeof(char), ios_base::cur);
     }
     return valido != '*';
@@ -29,9 +29,10 @@ void GerenciadorDeBlocos<T>::CarregarBloco(int indice, T *destino) {
         leitura.open(nomeArquivo);
     }
     leitura.seekg(indice * tamanhoBloco, ios::beg);
-    //leitura.read(destino, sizeof(destino));
+    leitura.read((char *)destino, sizeof(destino));
     leitura.close();
 }
+
 
 template<typename T>
 void GerenciadorDeBlocos<T>::SalvarBloco(int indice, T *origem) {
@@ -39,7 +40,7 @@ void GerenciadorDeBlocos<T>::SalvarBloco(int indice, T *origem) {
         escrita.open(nomeArquivo);
     }
     escrita.seekp(indice * tamanhoBloco, ios::beg);
-    //escrita.write(origem, sizeof(origem));
+    escrita << *origem;
     escrita.close();
 }
 
@@ -63,7 +64,7 @@ void GerenciadorDeBlocos<T>::DeletarBloco(int indice) {
     }
     char del = '*';
     escrita.seekp(indice * tamanhoBloco, ios::beg);
-    //escrita.write(&del, sizeof(char));
+    escrita.write((char *) &del, sizeof(char));
     escrita.close();
 }
 

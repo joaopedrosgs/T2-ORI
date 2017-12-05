@@ -6,31 +6,31 @@
 
 #IncludeRegexTransform: 
 
-C:/T2-ORI/BTree.cpp
+/home/pedro/CLionProjects/T2-ORI/BTree.cpp
 BTree.h
-C:/T2-ORI/BTree.h
+/home/pedro/CLionProjects/T2-ORI/BTree.h
 
-C:/T2-ORI/BTree.h
+/home/pedro/CLionProjects/T2-ORI/BTree.h
 BTreeNode.h
-C:/T2-ORI/BTreeNode.h
-GerenciadorDeBlocos.h
-C:/T2-ORI/GerenciadorDeBlocos.h
+/home/pedro/CLionProjects/T2-ORI/BTreeNode.h
 
-C:/T2-ORI/BTreeNode.cpp
+/home/pedro/CLionProjects/T2-ORI/BTreeNode.cpp
 iostream
 -
 BTreeNode.h
-C:/T2-ORI/BTreeNode.h
+/home/pedro/CLionProjects/T2-ORI/BTreeNode.h
 
-C:/T2-ORI/BTreeNode.h
+/home/pedro/CLionProjects/T2-ORI/BTreeNode.h
+ostream
+-
+GerenciadorDeBlocos.cpp
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
+
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
 GerenciadorDeBlocos.h
-C:/T2-ORI/GerenciadorDeBlocos.h
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
 
-C:/T2-ORI/GerenciadorDeBlocos.cpp
-GerenciadorDeBlocos.h
-C:/T2-ORI/GerenciadorDeBlocos.h
-
-C:/T2-ORI/GerenciadorDeBlocos.h
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
 iostream
 -
 fstream
@@ -42,7 +42,7 @@ string
 cstdio
 -
 
-C:/T2-ORI/main.cpp
+/home/pedro/CLionProjects/T2-ORI/main.cpp
 locale.h
 -
 stdio.h
@@ -50,5 +50,5 @@ stdio.h
 stdlib.h
 -
 BTree.h
-C:/T2-ORI/BTree.h
+/home/pedro/CLionProjects/T2-ORI/BTree.h
 

@@ -4,10 +4,10 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/T2-ORI/BTree.cpp" "C:/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/BTree.cpp.obj"
-  "C:/T2-ORI/BTreeNode.cpp" "C:/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/BTreeNode.cpp.obj"
-  "C:/T2-ORI/GerenciadorDeBlocos.cpp" "C:/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.obj"
-  "C:/T2-ORI/main.cpp" "C:/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/main.cpp.obj"
+  "/home/pedro/CLionProjects/T2-ORI/BTree.cpp" "/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/BTree.cpp.o"
+  "/home/pedro/CLionProjects/T2-ORI/BTreeNode.cpp" "/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/BTreeNode.cpp.o"
+  "/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp" "/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.o"
+  "/home/pedro/CLionProjects/T2-ORI/main.cpp" "/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

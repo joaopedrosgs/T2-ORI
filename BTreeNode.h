@@ -6,6 +6,7 @@
 #define T1_ORI_BTREENODE_H
 
 
+#include <ostream>
 #include "GerenciadorDeBlocos.cpp"
 
 class BTreeNode {
@@ -36,6 +37,8 @@ public:
 
     void SalvarNoArquivo();
     ~BTreeNode();
+
+    friend ostream &operator<<(ostream &os, const BTreeNode &node);
 
 // Permite que BTree acesse atributos privados dessa classe
     friend class BTree;
