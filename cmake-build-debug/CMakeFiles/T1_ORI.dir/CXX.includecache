@@ -17,18 +17,24 @@ BTreeNode.h
 /home/pedro/CLionProjects/T2-ORI/BTreeNode.cpp
 iostream
 -
+cstring
+-
 BTreeNode.h
 /home/pedro/CLionProjects/T2-ORI/BTreeNode.h
 
 /home/pedro/CLionProjects/T2-ORI/BTreeNode.h
 ostream
 -
-GerenciadorDeBlocos.cpp
-/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
-
-/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
 GerenciadorDeBlocos.h
 /home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
+
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
+cstring
+-
+GerenciadorDeBlocos.h
+/home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
+BTreeNode.h
+/home/pedro/CLionProjects/T2-ORI/BTreeNode.h
 
 /home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
 iostream

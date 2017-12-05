@@ -21,6 +21,8 @@ class GerenciadorDeBlocos {
     ofstream escrita;
 
     bool ehValido();
+    void novoBlocoEmIndice(int x);
+
 
 public:
 
@@ -33,6 +35,7 @@ public:
     void NovoBloco();
 
     void DeletarBloco(int indice);
+
 
 };
 

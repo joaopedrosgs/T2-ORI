@@ -19,7 +19,10 @@ int main() {
     a.insert(65);
 
     a.insert(34);
+    a.insert(365);
 
+    a.insert(35);
+    a.traverse();
 
 
     return 0;
