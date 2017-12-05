@@ -10,13 +10,13 @@
 #include <cstdlib>
 #include <string>
 #include <cstdio>
+class BTreeNode;
 
 using namespace std;
 
-template<typename T>
 class GerenciadorDeBlocos {
     int tamanhoBloco;
-    const char* nomeArquivo;
+    const char *nomeArquivo;
     ifstream leitura;
     ofstream escrita;
 
@@ -26,9 +26,9 @@ public:
 
     GerenciadorDeBlocos(int tamanhoBloco, const char *nomeArquivo);
 
-    void CarregarBloco(int indice, T *destino);
+    void CarregarBloco(int indice, BTreeNode *destino);
 
-    void SalvarBloco(int indice, T *origem);
+    void SalvarBloco(int indice, BTreeNode *origem);
 
     void NovoBloco();
 

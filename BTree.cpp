@@ -8,7 +8,7 @@
 // Função para inserir uma chave na árvore
 
 BTree::BTree(int _t, const char *_nomeArquivo) : gerenciador(
-        GerenciadorDeBlocos<BTreeNode>(_t * 2 * (int)sizeof(int), _nomeArquivo)) {
+        GerenciadorDeBlocos(_t * 2 * (int)sizeof(int), _nomeArquivo)) {
     nomeArquivo = _nomeArquivo;
     t = _t;
     atual = -1;

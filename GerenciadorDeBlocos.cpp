@@ -3,11 +3,14 @@
 //
 
 #include "GerenciadorDeBlocos.h"
+#include "BTreeNode.h"
 
 using namespace std;
 
-template<typename T>
-bool GerenciadorDeBlocos<T>::ehValido() {
+
+
+
+bool GerenciadorDeBlocos::ehValido() {
     char valido = '*';
     if (leitura.is_open()) {
         leitura.read((char *)&valido, sizeof(char));
@@ -16,26 +19,29 @@ bool GerenciadorDeBlocos<T>::ehValido() {
     return valido != '*';
 }
 
-template<typename T>
-GerenciadorDeBlocos<T>::GerenciadorDeBlocos(int _tamanhoBloco, const char *_nomeArquivo) {
+
+GerenciadorDeBlocos::GerenciadorDeBlocos(int _tamanhoBloco, const char *_nomeArquivo) {
     tamanhoBloco = _tamanhoBloco;
     nomeArquivo = _nomeArquivo;
 
 }
 
-template<typename T>
-void GerenciadorDeBlocos<T>::CarregarBloco(int indice, T *destino) {
+
+void GerenciadorDeBlocos::CarregarBloco(int indice, BTreeNode *destino) {
     if (!leitura.is_open()) {
         leitura.open(nomeArquivo);
     }
+    char bloco[tamanhoBloco];
+    
     leitura.seekg(indice * tamanhoBloco, ios::beg);
-    leitura.read((char *)destino, sizeof(destino));
+    leitura.read(bloco, tamanhoBloco);
+
     leitura.close();
 }
 
 
-template<typename T>
-void GerenciadorDeBlocos<T>::SalvarBloco(int indice, T *origem) {
+
+void GerenciadorDeBlocos::SalvarBloco(int indice, BTreeNode *origem) {
     if (!escrita.is_open()) {
         escrita.open(nomeArquivo);
     }
@@ -44,8 +50,7 @@ void GerenciadorDeBlocos<T>::SalvarBloco(int indice, T *origem) {
     escrita.close();
 }
 
-template<typename T>
-void GerenciadorDeBlocos<T>::NovoBloco() {
+void GerenciadorDeBlocos::NovoBloco() {
     if (!escrita.is_open()) {
         escrita.open(nomeArquivo);
     }
@@ -57,8 +62,8 @@ void GerenciadorDeBlocos<T>::NovoBloco() {
     escrita.close();
 }
 
-template<typename T>
-void GerenciadorDeBlocos<T>::DeletarBloco(int indice) {
+
+void GerenciadorDeBlocos::DeletarBloco(int indice) {
     if (!escrita.is_open()) {
         escrita.open(nomeArquivo);
     }
@@ -67,4 +72,7 @@ void GerenciadorDeBlocos<T>::DeletarBloco(int indice) {
     escrita.write((char *) &del, sizeof(char));
     escrita.close();
 }
+
+
+
 

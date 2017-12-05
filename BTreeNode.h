@@ -7,7 +7,7 @@
 
 
 #include <ostream>
-#include "GerenciadorDeBlocos.cpp"
+#include "GerenciadorDeBlocos.h"
 
 class BTreeNode {
     int *keys;  // Vetor com as chaves do nó
@@ -16,10 +16,10 @@ class BTreeNode {
     int numero_chaves;     // Numero atual de chaves no nó
     bool leaf; //Flag para declarar o nó como folha ou não
     int indice_no_arquivo;
-    GerenciadorDeBlocos<BTreeNode> *gerenciador;
+    GerenciadorDeBlocos *gerenciador;
 public:
     BTreeNode();   // Construtor padrao
-    BTreeNode(int _t, bool _leaf,     GerenciadorDeBlocos<BTreeNode> *_gerenciador);   // Construtor
+    BTreeNode(int _t, bool _leaf, GerenciadorDeBlocos*_gerenciador);   // Construtor
 
     // Função para inserir uma nova chave na sub-árvore que possui esse nó como raíz.
     //Assume-se que o nó não está cheio quando essa função é chamada
@@ -36,6 +36,7 @@ public:
     BTreeNode *search(int k);
 
     void SalvarNoArquivo();
+
     ~BTreeNode();
 
     friend ostream &operator<<(ostream &os, const BTreeNode &node);

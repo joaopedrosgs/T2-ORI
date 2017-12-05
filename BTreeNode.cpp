@@ -8,13 +8,13 @@
 
 BTreeNode::BTreeNode() {
     leaf = true;
-    ordem=0;
+    ordem = 0;
 
 }
 
 // Construtor da classe de nó de árvore B
 
-BTreeNode::BTreeNode(int t1, bool leaf1,     GerenciadorDeBlocos<BTreeNode> *_gerenciador) {
+BTreeNode::BTreeNode(int t1, bool leaf1, GerenciadorDeBlocos *_gerenciador) {
     // Copia o grau e a propriedade de ser folha ou não
     ordem = t1;
     leaf = leaf1;
@@ -103,7 +103,7 @@ void BTreeNode::insertNonFull(int k) {
                 i++;
         }
         no_encontrado->insertNonFull(k);
-        delete(no_encontrado);
+        delete (no_encontrado);
     }
 }
 
@@ -142,12 +142,13 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
 
     // Incrementa o número de chaves deste nó já que uma nova foi inserida
     numero_chaves = numero_chaves + 1;
-    delete(no_receptor);
+    delete (no_receptor);
 }
 
 void BTreeNode::SalvarNoArquivo() {
-    gerenciador->SalvarBloco(indice_no_arquivo,this);
+    gerenciador->SalvarBloco(indice_no_arquivo, this);
 }
+
 BTreeNode::~BTreeNode() {
     SalvarNoArquivo();
     delete[] keys;
@@ -156,13 +157,14 @@ BTreeNode::~BTreeNode() {
 
 ostream &operator<<(ostream &os, const BTreeNode &node) {
     os << node.ordem << '|';
-    for(int i=0; i<node.ordem*2-1; i++)
+    for (int i = 0; i < node.ordem * 2 - 1; i++)
         os << node.keys[i] << '|';
-
-    for(int i=0; i<node.ordem*2; i++)
-        os << node.chaves[i] << '|';
     os << node.numero_chaves << '|';
+    for (int i = 0; i < node.ordem * 2; i++)
+        os << node.chaves[i] << '|';
     os << node.leaf << '|';
     os << node.indice_no_arquivo;
     return os;
 }
+
+

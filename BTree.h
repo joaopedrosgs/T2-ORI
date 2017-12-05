@@ -14,7 +14,7 @@ class BTree {
     int t;  // Ordem da árvore
     const char* nomeArquivo;
     int atual;
-    GerenciadorDeBlocos<BTreeNode> gerenciador;
+    GerenciadorDeBlocos gerenciador;
 public:
     // Construtor
     BTree(int _t, const char *_nomeArquivo);
