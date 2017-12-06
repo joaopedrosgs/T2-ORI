@@ -22,8 +22,8 @@ BTreeNode::BTreeNode(int _ordem, bool leaf1, GerenciadorDeBlocos *_gerenciador) 
 
     // Aloca memória para comportar o número máximo de filhos e ponteiros para nós-filho
     chaves = new int[2 * ordem - 1]();
-    filhos = new int[2 * ordem]{-1};
-    memset(filhos, -1, _ordem * 2*sizeof(int));
+    filhos = new int[2 * ordem]();
+    memset(filhos, -1, _ordem * 2 * sizeof(int));
 
 
 
@@ -113,18 +113,25 @@ void BTreeNode::insertNonFull(int k) {
 
 
 void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
+    // Quem chama esse metodo vai ser o novo pai de dois novos nós
     // Cria um novo nó que vai receber ordem-1 filhos de no_doador (mínimo de filhos)
-    BTreeNode *no_receptor = new BTreeNode(no_doador->ordem, no_doador->leaf, gerenciador);
+    // Um dos nós que vai receber metade dos elementos
+    BTreeNode *no_receptor = new BTreeNode(no_doador->ordem, no_doador->leaf, gerenciador, indice_no_arquivo + 1);
     no_receptor->numero_chaves = ordem - 1;
 
     // Copia as últimas ordem-1 filhos de no_doador para o novo nó
-    for (int j = 0; j < ordem - 1; j++)
+    for (int j = 0; j < ordem - 1; j++) {
         no_receptor->chaves[j] = no_doador->chaves[j + ordem];
+        no_doador->chaves[j + ordem] = 0;
+    }
+
 
     // Copia os últimos ordem-1 filhos apontados por no_doador para o novo nó
     if (no_doador->leaf == false) {
-        for (int j = 0; j < ordem; j++)
+        for (int j = 0; j < ordem; j++) {
             no_receptor->filhos[j] = no_doador->filhos[j + ordem];
+            no_receptor->filhos[j] = -1;
+        }
     }
 
     // Reduz o número de filhos em no_doador
@@ -159,7 +166,7 @@ BTreeNode::~BTreeNode() {
     delete[] filhos;
 }
 
-ostream &operator<<(ostream &os, const BTreeNode &node) {
+fstream &operator<<(fstream &os, const BTreeNode &node) {
     os << node.ordem << '|';
     os << node.numero_chaves << '|';
     for (int i = 0; i < node.ordem * 2 - 1; i++)
@@ -171,13 +178,32 @@ ostream &operator<<(ostream &os, const BTreeNode &node) {
     return os;
 }
 
-void BTreeNode::SetInfo(int _ordem, int _numero_chaves, int *_chaves, int* _filhos, bool _leaf, int _indice_no_arquovo) {
+void
+BTreeNode::SetInfo(int _ordem, int _numero_chaves, int *_chaves, int *_filhos, bool _leaf, int _indice_no_arquivo) {
     ordem = _ordem;
     numero_chaves = _numero_chaves;
     chaves = _chaves;
     filhos = _filhos;
     leaf = _leaf;
-    indice_no_arquivo = _indice_no_arquovo;
+    indice_no_arquivo = _indice_no_arquivo;
+}
+
+BTreeNode::BTreeNode(int _ordem, bool _leaf, GerenciadorDeBlocos *_gerenciador, int _indice_no_arquivo) {
+    // Copia o grau e a propriedade de ser folha ou não
+    ordem = _ordem;
+    leaf = _leaf;
+
+    // Aloca memória para comportar o número máximo de filhos e ponteiros para nós-filho
+    chaves = new int[2 * ordem - 1]();
+    filhos = new int[2 * ordem]();
+    memset(filhos, -1, _ordem * 2 * sizeof(int));
+
+
+
+    // Inicializa o número de filhos como 0
+    numero_chaves = 0;
+    gerenciador = _gerenciador;
+    indice_no_arquivo = _indice_no_arquivo;
 }
 
 

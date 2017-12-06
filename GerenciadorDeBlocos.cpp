@@ -3,6 +3,7 @@
 //
 
 #include <cstring>
+#include <cmath>
 #include "GerenciadorDeBlocos.h"
 #include "BTreeNode.h"
 
@@ -11,9 +12,9 @@ using namespace std;
 
 bool GerenciadorDeBlocos::ehValido() {
     char valido = '*';
-    if (leitura.is_open()) {
-        leitura.read((char *) &valido, sizeof(char));
-        leitura.seekg(-sizeof(char), ios_base::cur);
+    if (arquivo.is_open()) {
+        arquivo.read((char *) &valido, sizeof(char));
+        arquivo.seekg(-sizeof(char), ios_base::cur);
     }
     return valido != '*';
 }
@@ -23,16 +24,19 @@ GerenciadorDeBlocos::GerenciadorDeBlocos(int _tamanhoBloco, const char *_nomeArq
     tamanhoBloco = _tamanhoBloco;
     nomeArquivo = _nomeArquivo;
 
+
 }
 
 
 void GerenciadorDeBlocos::CarregarBloco(int indice, BTreeNode *destino) {
-    if (!leitura.is_open()) {
-        leitura.open(nomeArquivo);
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo,std::fstream::in);
     }
     char bloco[tamanhoBloco];
-    leitura.seekg(indice * tamanhoBloco, ios::beg);
-    leitura.read(bloco, tamanhoBloco);
+    memset(bloco, '0', tamanhoBloco);
+    arquivo.seekg(indice * tamanhoBloco, ios::beg);
+    arquivo.read(bloco, tamanhoBloco);
+    arquivo.close();
 
     char *tokens = strtok(bloco, "|");// SEPARA O BLOCO POR TOKENS
 
@@ -65,51 +69,73 @@ void GerenciadorDeBlocos::CarregarBloco(int indice, BTreeNode *destino) {
 
     destino->SetInfo(_ordem, _numero_chaves, _chaves, _filhos, _leaf, _indice_no_arquivo);
 
-    leitura.close();
+
 }
 
 
 void GerenciadorDeBlocos::SalvarBloco(int indice, BTreeNode *origem) {
-    if (!escrita.is_open()) {
-        escrita.open(nomeArquivo);
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo,std::fstream::out |std::fstream::app);
     }
-    novoBlocoEmIndice(indice);
-    escrita.seekp(indice * tamanhoBloco, ios::beg);
-    escrita << *origem;
-    escrita.flush();
-    escrita.close();
+    for(int i=UltimoIndice(); i < indice; i++) {
+        NovoBloco();
+    }
+    novoBlocoEmIndice(indice);//zerando espaço
+    arquivo.seekp(indice * tamanhoBloco, ios::beg);
+    if(!arquivo.good()){
+        cout << "Erro de escrita";
+        return;
+    }
+    arquivo << *origem;
+    arquivo.flush();
+    arquivo.close();
+
 }
 
 void GerenciadorDeBlocos::NovoBloco() {
-    if (!escrita.is_open()) {
-        escrita.open(nomeArquivo);
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo,std::fstream::out);
     }
     char zero = 0;
-    escrita.seekp(0, ios::end);
-    for (int i = 0; i < tamanhoBloco; ++i) {
-        escrita.write(&zero, sizeof(char));
+    arquivo.seekp(0, ios::end);
+    for (int i = 0; i < tamanhoBloco; i++) {
+        arquivo.write(&zero, sizeof(char));
     }
-    escrita.close();
+
 }
 void GerenciadorDeBlocos::novoBlocoEmIndice(int x) {
 
     char zero = 0;
-    escrita.seekp(tamanhoBloco*x, ios::beg);
+    arquivo.seekp(tamanhoBloco*x, ios::beg);
     for (int i = 0; i < tamanhoBloco; ++i) {
-        escrita.write(&zero, sizeof(char));
+        arquivo.write(&zero, sizeof(char));
     }
+    arquivo.flush();
 
 }
 
 
 void GerenciadorDeBlocos::DeletarBloco(int indice) {
-    if (!escrita.is_open()) {
-        escrita.open(nomeArquivo);
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo, fstream::in | fstream::out);
     }
     char del = '*';
-    escrita.seekp(indice * tamanhoBloco, ios::beg);
-    escrita.write((char *) &del, sizeof(char));
-    escrita.close();
+    arquivo.seekp(indice * tamanhoBloco, ios::beg);
+    arquivo.write(&del, sizeof(char));
+    
+}
+
+int GerenciadorDeBlocos::UltimoIndice() {
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo,std::fstream::in | std::fstream::out );
+
+    }
+    arquivo.seekp(0, ios::end);
+
+    int indice =  arquivo.tellp() / (float)tamanhoBloco;
+
+    return indice;
+
 }
 
 

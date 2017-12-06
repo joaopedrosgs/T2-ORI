@@ -31,6 +31,8 @@ GerenciadorDeBlocos.h
 /home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.cpp
 cstring
 -
+cmath
+-
 GerenciadorDeBlocos.h
 /home/pedro/CLionProjects/T2-ORI/GerenciadorDeBlocos.h
 BTreeNode.h

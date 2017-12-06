@@ -6,7 +6,7 @@
 
 int main() {
     const char* NomeArquivo = "teste";
-    BTree a(4, NomeArquivo);
+    BTree a(2, NomeArquivo);
     a.insert(20);
     a.insert(3);
 
@@ -16,12 +16,7 @@ int main() {
 
     a.insert(32);
 
-    a.insert(65);
 
-    a.insert(34);
-    a.insert(365);
-
-    a.insert(35);
     a.traverse();
 
 

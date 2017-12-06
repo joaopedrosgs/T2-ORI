@@ -17,8 +17,7 @@ using namespace std;
 class GerenciadorDeBlocos {
     int tamanhoBloco;
     const char *nomeArquivo;
-    ifstream leitura;
-    ofstream escrita;
+    fstream arquivo;
 
     bool ehValido();
     void novoBlocoEmIndice(int x);
@@ -37,6 +36,7 @@ public:
     void DeletarBloco(int indice);
 
 
+    int UltimoIndice();
 };
 
 

@@ -20,6 +20,8 @@ class BTreeNode {
 public:
     BTreeNode();   // Construtor padrao
     BTreeNode(int _t, bool _leaf, GerenciadorDeBlocos*_gerenciador);   // Construtor
+    BTreeNode(int _t, bool _leaf, GerenciadorDeBlocos*_gerenciador, int _indice_no_arquivo);   // Construtor
+
 
 
 
@@ -41,7 +43,7 @@ public:
 
     ~BTreeNode();
 
-    friend ostream &operator<<(ostream &os, const BTreeNode &node);
+    friend fstream &operator<<(fstream &os, const BTreeNode &node);
 
 // Permite que BTree acesse atributos privados dessa classe
     friend class BTree;
