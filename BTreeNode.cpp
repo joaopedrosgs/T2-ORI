@@ -41,15 +41,17 @@ void BTreeNode::traverse() {
         if (leaf == false) {
             BTreeNode no_apropriado(ordem, false, gerenciador);
             gerenciador->CarregarBloco(filhos[i], &no_apropriado);
-            no_apropriado.traverse();
+            if(no_apropriado.filhos[i]!=-1)
+                no_apropriado.traverse();
         }
-        std::cout << " " << chaves[i];
+        std::cout << indice_no_arquivo << ":" << chaves[i]<< std::endl;
     }
 
     // Imprime a árvore apontada pela ultima chave
     if (leaf == false) {
         BTreeNode no_apropriado(ordem, leaf, gerenciador);
         gerenciador->CarregarBloco(filhos[i], &no_apropriado);
+        if(no_apropriado.filhos[i]!=-1)
         no_apropriado.traverse();
     }
 }
@@ -90,7 +92,8 @@ void BTreeNode::insertNonFull(int k) {
         // Insere a chave na posiçao encontrada
         chaves[i + 1] = k;
         numero_chaves++;
-    } else // Se não é um nó folha, deve decidir qual nó filho recebe a chave
+    }
+    else // Se não é um nó folha, deve decidir qual nó filho recebe a chave
     {
         while (i >= 0 && chaves[i] > k)
             i--;
@@ -130,11 +133,11 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
         no_receptor->chaves[j] = no_doador->chaves[j + ordem];
     }
 
-
     // Copia os últimos ordem-1 filhos apontados por no_doador para o novo nó
     if (no_doador->leaf == false) {
         for (int j = 0; j < ordem; j++) {
             no_receptor->filhos[j] = no_doador->filhos[j + ordem];
+            no_doador->filhos[j + ordem] = -1;
         }
     }
 
@@ -154,6 +157,7 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
 
     // Copia a chave do meio para esse nó
     chaves[i] = no_doador->chaves[ordem - 1];
+    no_doador->chaves[ordem-1]=0;
 
     // Incrementa o número de filhos deste nó já que uma nova foi inserida
     numero_chaves++;
