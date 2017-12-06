@@ -13,8 +13,6 @@
 
 class BTreeNode;
 
-class BTreeNode;
-
 using namespace std;
 
 class GerenciadorDeBlocos {
@@ -22,27 +20,28 @@ class GerenciadorDeBlocos {
     const char *nomeArquivo;
     fstream arquivo;
 
-    bool ehValido();
-
-    void zerarBlocoEm(int x);
+    void zerarBlocoEm(int indice);
 
     void novoBloco();
 
 public:
-    int GetTamanhoBloco();
 
     GerenciadorDeBlocos(int tamanhoBloco, const char *nomeArquivo);
 
+    //Pega um indice e copia seu conteudo para o BTreeNode
     void CarregarBloco(int indice, BTreeNode *destino);
 
+    // Salva um BTreeNode em um indice (serializando-o antes, tambem zera o bloco antes)
     void SalvarBloco(int indice, BTreeNode *origem);
 
+    //Cria um novo bloco (e zera ele)
     void NovoBloco();
 
-    void DeletarBloco(int indice);
-
+    //Pega o tamanho do arquivo e divide pelo tamanho do bloco, obtendo assim o indice
     int UltimoIndice();
 
+    //Converte um buffer para um BTreeNode
+    void Deserializar(BTreeNode *destino, char *buffer);
 };
 
 
