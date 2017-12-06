@@ -7,7 +7,12 @@ int main() {
     srand (time(NULL));
 
         const char *NomeArquivo = "teste";
-        BTree a(3, NomeArquivo);
+        int ordem = 2;
+        while(ordem < 3) {
+            std::cout << "Digite a ordem da arvore (o tamanho maximo de chaves sera ordem*2-1), o valor minimo é 3" << endl;
+            std::cin >> ordem;
+        }
+        BTree a(ordem, NomeArquivo);
 
         for (int i = 0; i < 52; i++) {
             int random = rand() % 200;
