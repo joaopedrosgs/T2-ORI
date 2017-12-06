@@ -35,15 +35,29 @@ BTreeNode::BTreeNode(int _ordem, bool leaf1, GerenciadorDeBlocos *_gerenciador) 
 // Função para imprimir a árvore
 void BTreeNode::traverse() {
     int i = 0;
+
+
     while (filhos[i] != -1) {
         BTreeNode no_debaixo(ordem, false, gerenciador);
         gerenciador->CarregarBloco(filhos[i], &no_debaixo);
         no_debaixo.traverse();
         i++;
     }
+    i = 0;
+    if ((filhos[i] != -1)) {
+        cout << "Filhos de " << indice_no_arquivo << ": ";
+        while (filhos[i] != -1) {
+            cout << filhos[i] << ",";
+            i++;
+        }
+        cout << endl;
+    } else {
+        cout << indice_no_arquivo << " Nao tem filhos " << endl;
+    }
     for (i = 0; i < numero_chaves; i++) {
         std::cout << indice_no_arquivo << ":" << chaves[i] << std::endl;
     }
+
 }
 
 // Funçao que busca uma chave k na sub-arvore que possui esse nó como raíz

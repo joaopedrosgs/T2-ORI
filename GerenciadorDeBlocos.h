@@ -24,10 +24,6 @@ class GerenciadorDeBlocos {
     bool ehValido();
     void zerarBlocoEm(int x);
 
-
-    void zerarBlocoEm(int x);
-
-
 public:
     int GetTamanhoBloco();
 
@@ -43,6 +39,8 @@ public:
 
 
     int UltimoIndice();
+
+    void novoBloco();
 };
 
 

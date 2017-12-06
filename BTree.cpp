@@ -56,8 +56,8 @@ void BTree::insert(int k) {
         gerenciador.CarregarBloco(atual, raiz);
         // Se a raíz estiver cheia, o nó é dividido e a árvore cresce
         if (raiz->numero_chaves >= 2 * raiz->ordem - 1) {
-
-            BTreeNode *novo_pai = new BTreeNode(t, false, &gerenciador, atual + 2);
+            BTreeNode *novo_pai = new BTreeNode(t, false, &gerenciador, gerenciador.UltimoIndice());
+            gerenciador.NovoBloco();
 
             // Torna a velha raíz um nó filho da nova raíz
             novo_pai->filhos[0] = atual;

@@ -68,7 +68,7 @@ void GerenciadorDeBlocos::SalvarBloco(int indice, BTreeNode *origem) {
         arquivo.open(nomeArquivo, std::fstream::out | std::fstream::in);
     }
     for (int i = UltimoIndice(); i < indice; i++) {
-        NovoBloco();
+        novoBloco();
     }
     zerarBlocoEm(indice);//zerando espaço
     arquivo.seekp(indice * tamanhoBloco, std::fstream::beg);
@@ -83,6 +83,20 @@ void GerenciadorDeBlocos::SalvarBloco(int indice, BTreeNode *origem) {
 }
 
 void GerenciadorDeBlocos::NovoBloco() {
+    if (!arquivo.is_open()) {
+        arquivo.open(nomeArquivo, std::fstream::out);
+    }
+    char zero = 0;
+    arquivo.seekp(0, std::fstream::end);
+    for (int i = 0; i < tamanhoBloco; i++) {
+        arquivo.write(&zero, sizeof(char));
+    }
+    arquivo.flush();
+    arquivo.close();
+
+}
+
+void GerenciadorDeBlocos::novoBloco() {
     if (!arquivo.is_open()) {
         arquivo.open(nomeArquivo, std::fstream::out);
     }
