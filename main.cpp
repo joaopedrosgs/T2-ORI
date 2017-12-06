@@ -6,7 +6,15 @@
 
 int main() {
     const char* NomeArquivo = "teste";
-    GerenciadorDeBlocos<BTreeNode> a(1024,  NomeArquivo);
-    a.NovoBloco();
+    BTree a(3, NomeArquivo);
+    for (int i = 0; i < 10; i++) {
+        int random = rand() % 200;
+
+        cout << "->" << random << endl;
+        a.insert(random);
+    }
+    a.traverse();
+
+
     return 0;
 }
