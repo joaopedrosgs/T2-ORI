@@ -12,7 +12,7 @@ using std::string;
 
 class BTree {
     int t;  // Ordem da árvore
-    const char* nomeArquivo;
+    const char *nomeArquivo;
     int atual;
     GerenciadorDeBlocos gerenciador;
 public:
@@ -23,10 +23,12 @@ public:
     void traverse();
 
     // Função para buscar uma chave na árvore
-    BTreeNode *search(int k);
+    int search(int k);
 
     // Função que insere uma chave nessa árvore
     void insert(int k);
+
+    BTreeNode ObterNo(int indice);
 };
 
 

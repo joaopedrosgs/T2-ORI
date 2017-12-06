@@ -30,13 +30,13 @@ void BTree::traverse() {
 }
 
 // Função para buscar uma chave na árvore
-BTreeNode *BTree::search(int k) {
+int BTree::search(int k) {
     if (atual < 0) {
-        return nullptr;
+        return -1;
     } else {
         BTreeNode bTreeNode(t, true, &gerenciador);
-        gerenciador.CarregarBloco(0, &bTreeNode);
-        bTreeNode.search(k);
+        gerenciador.CarregarBloco(atual, &bTreeNode);
+        return bTreeNode.search(k);
     }
 }
 
@@ -47,8 +47,7 @@ void BTree::insert(int k) {
         BTreeNode *bTreeNode = new BTreeNode(t, true, &gerenciador, ++atual);
         bTreeNode->chaves[0] = k;  // Insere a chave
         for (int i = 0; i < (bTreeNode->ordem * 2 - 1); i++)
-            std::cout << bTreeNode->chaves[i] << std::endl;
-        bTreeNode->numero_chaves = 1;  // Atualiza o número de filhos no nó
+            bTreeNode->numero_chaves = 1;  // Atualiza o número de filhos no nó
         delete (bTreeNode);
     } else // Se não é uma árvore vazia
     {
@@ -85,5 +84,12 @@ void BTree::insert(int k) {
         delete (raiz);
 
     }
+
+}
+
+BTreeNode BTree::ObterNo(int indice) {
+    BTreeNode node(t, true, &gerenciador);
+    gerenciador.CarregarBloco(indice, &node);
+    return node;
 
 }

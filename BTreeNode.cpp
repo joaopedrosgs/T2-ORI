@@ -61,7 +61,7 @@ void BTreeNode::traverse() {
 }
 
 // Funçao que busca uma chave k na sub-arvore que possui esse nó como raíz
-BTreeNode *BTreeNode::search(int k) {
+int BTreeNode::search(int k) {
     // Encontra a primeira chave maior ou igual a k, pois indica a posição em que deve descer ou encontra a chave
     int i = 0;
     while (i < numero_chaves && k > chaves[i])
@@ -69,15 +69,15 @@ BTreeNode *BTreeNode::search(int k) {
 
     // Se encontrou a chave, retorna esse nó
     if (chaves[i] == k)
-        return this;
+        return indice_no_arquivo;
 
     // Se não encontrou a chave e é um nó folha, então a chave não está na árvore
     if (leaf == true)
-        return nullptr;
+        return -1;
 
     // Desce no nó filho apropriado
     BTreeNode no_apropriado(ordem, leaf, gerenciador);
-    gerenciador->CarregarBloco(i, &no_apropriado);
+    gerenciador->CarregarBloco(filhos[i], &no_apropriado);
     return no_apropriado.search(k);
 }
 
@@ -215,6 +215,27 @@ BTreeNode::BTreeNode(int _ordem, bool _leaf, GerenciadorDeBlocos *_gerenciador, 
     numero_chaves = 0;
     gerenciador = _gerenciador;
     indice_no_arquivo = _indice_no_arquivo;
+}
+
+void BTreeNode::ImprimirInfo() {
+    {
+        cout << "Local no arquivo: " << indice_no_arquivo << endl;
+        cout << "Ordem: " << ordem << endl;
+        cout << "Chaves: ";
+        for (int i = 0; i < numero_chaves; i++) {
+            cout << chaves[i] << ", ";
+        }
+        cout << endl << "Filhos: ";
+        int i = 0;
+        if (filhos[i] != -1) {
+            while (filhos[i] != -1) {
+                cout << filhos[i] << ", ";
+            }
+        } else {
+            cout << "Nao tem filhos";
+        }
+        cout << endl;
+    }
 }
 
 

@@ -37,13 +37,15 @@ public:
     void traverse();
 
     // Função que busca uma chave k na subárvore que possui esse nó como raíz. Retorna NULL se não encontrar
-    BTreeNode *search(int k);
+    int search(int k);
 
     void SalvarNoArquivo();
 
     ~BTreeNode();
 
     friend fstream &operator<<(fstream &os, const BTreeNode &node);
+
+    void ImprimirInfo();
 
 // Permite que BTree acesse atributos privados dessa classe
     friend class BTree;

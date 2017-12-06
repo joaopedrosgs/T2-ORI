@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <string>
 #include <cstdio>
+
 class BTreeNode;
 
 class BTreeNode;
@@ -22,7 +23,10 @@ class GerenciadorDeBlocos {
     fstream arquivo;
 
     bool ehValido();
+
     void zerarBlocoEm(int x);
+
+    void novoBloco();
 
 public:
     int GetTamanhoBloco();
@@ -37,10 +41,8 @@ public:
 
     void DeletarBloco(int indice);
 
-
     int UltimoIndice();
 
-    void novoBloco();
 };
 
 
