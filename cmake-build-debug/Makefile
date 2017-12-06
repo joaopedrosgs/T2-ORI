@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/pedro/CLionProjects/T2-ORI/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/opt/JetBrains/apps/CLion/ch-0/173.3727.114/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/opt/JetBrains/apps/CLion/ch-0/173.3727.114/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named T1_ORI
+# Target rules for targets named T2_ORI
 
 # Build rule for target.
-T1_ORI: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 T1_ORI
-.PHONY : T1_ORI
+T2_ORI: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 T2_ORI
+.PHONY : T2_ORI
 
 # fast build rule for target.
-T1_ORI/fast:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/build
-.PHONY : T1_ORI/fast
+T2_ORI/fast:
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/build
+.PHONY : T2_ORI/fast
 
 BTree.o: BTree.cpp.o
 
@@ -129,7 +129,7 @@ BTree.o: BTree.cpp.o
 
 # target to build an object file
 BTree.cpp.o:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTree.cpp.o
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTree.cpp.o
 .PHONY : BTree.cpp.o
 
 BTree.i: BTree.cpp.i
@@ -138,7 +138,7 @@ BTree.i: BTree.cpp.i
 
 # target to preprocess a source file
 BTree.cpp.i:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTree.cpp.i
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTree.cpp.i
 .PHONY : BTree.cpp.i
 
 BTree.s: BTree.cpp.s
@@ -147,7 +147,7 @@ BTree.s: BTree.cpp.s
 
 # target to generate assembly for a file
 BTree.cpp.s:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTree.cpp.s
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTree.cpp.s
 .PHONY : BTree.cpp.s
 
 BTreeNode.o: BTreeNode.cpp.o
@@ -156,7 +156,7 @@ BTreeNode.o: BTreeNode.cpp.o
 
 # target to build an object file
 BTreeNode.cpp.o:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTreeNode.cpp.o
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTreeNode.cpp.o
 .PHONY : BTreeNode.cpp.o
 
 BTreeNode.i: BTreeNode.cpp.i
@@ -165,7 +165,7 @@ BTreeNode.i: BTreeNode.cpp.i
 
 # target to preprocess a source file
 BTreeNode.cpp.i:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTreeNode.cpp.i
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTreeNode.cpp.i
 .PHONY : BTreeNode.cpp.i
 
 BTreeNode.s: BTreeNode.cpp.s
@@ -174,7 +174,7 @@ BTreeNode.s: BTreeNode.cpp.s
 
 # target to generate assembly for a file
 BTreeNode.cpp.s:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/BTreeNode.cpp.s
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/BTreeNode.cpp.s
 .PHONY : BTreeNode.cpp.s
 
 GerenciadorDeBlocos.o: GerenciadorDeBlocos.cpp.o
@@ -183,7 +183,7 @@ GerenciadorDeBlocos.o: GerenciadorDeBlocos.cpp.o
 
 # target to build an object file
 GerenciadorDeBlocos.cpp.o:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.o
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/GerenciadorDeBlocos.cpp.o
 .PHONY : GerenciadorDeBlocos.cpp.o
 
 GerenciadorDeBlocos.i: GerenciadorDeBlocos.cpp.i
@@ -192,7 +192,7 @@ GerenciadorDeBlocos.i: GerenciadorDeBlocos.cpp.i
 
 # target to preprocess a source file
 GerenciadorDeBlocos.cpp.i:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.i
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/GerenciadorDeBlocos.cpp.i
 .PHONY : GerenciadorDeBlocos.cpp.i
 
 GerenciadorDeBlocos.s: GerenciadorDeBlocos.cpp.s
@@ -201,7 +201,7 @@ GerenciadorDeBlocos.s: GerenciadorDeBlocos.cpp.s
 
 # target to generate assembly for a file
 GerenciadorDeBlocos.cpp.s:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.s
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/GerenciadorDeBlocos.cpp.s
 .PHONY : GerenciadorDeBlocos.cpp.s
 
 main.o: main.cpp.o
@@ -210,7 +210,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -219,7 +219,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -228,7 +228,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/T1_ORI.dir/build.make CMakeFiles/T1_ORI.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/T2_ORI.dir/build.make CMakeFiles/T2_ORI.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -237,9 +237,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... T1_ORI"
+	@echo "... rebuild_cache"
+	@echo "... T2_ORI"
 	@echo "... BTree.o"
 	@echo "... BTree.i"
 	@echo "... BTree.s"

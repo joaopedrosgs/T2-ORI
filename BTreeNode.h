@@ -10,9 +10,9 @@
 #include "GerenciadorDeBlocos.h"
 
 class BTreeNode {
-    int *chaves;  // Vetor com as filhos do nó
-    int ordem;      // Ordem do nó, que pode possuir de ordem-1 até 2t-1 filhos
-    int *filhos; // Vetor de ponteiros para os nós filhos
+    int *chaves;  // Vetor com as chaves do nó
+    int ordem;      // Ordem do nó, que pode possuir de ordem-1 até 2*ordem-1 filhos
+    int *filhos; // Vetor de indices para os filhos
     int numero_chaves;     // Numero atual de filhos no nó
     bool leaf; //Flag para declarar o nó como folha ou não
     int indice_no_arquivo;

@@ -137,7 +137,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=T1_ORI
+CMAKE_PROJECT_NAME:STATIC=T2_ORI
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -195,10 +195,10 @@ ProcessorCount_cmd_getconf:FILEPATH=/usr/bin/getconf
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/bin/sysctl
 
 //Value Computed by CMake
-T1_ORI_BINARY_DIR:STATIC=/home/pedro/CLionProjects/T2-ORI/cmake-build-debug
+T2_ORI_BINARY_DIR:STATIC=/home/pedro/CLionProjects/T2-ORI/cmake-build-debug
 
 //Value Computed by CMake
-T1_ORI_SOURCE_DIR:STATIC=/home/pedro/CLionProjects/T2-ORI
+T2_ORI_SOURCE_DIR:STATIC=/home/pedro/CLionProjects/T2-ORI
 
 
 ########################
