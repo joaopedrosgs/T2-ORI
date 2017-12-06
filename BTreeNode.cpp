@@ -245,7 +245,7 @@ void BTreeNode::ImprimirInfo() {
         }else {
             cout << "Nao tem filhos";
         }
-        cout <<  endl << "###########################" << endl;
+        cout <<  endl << "###########################" << endl << endl;
 
     }
 }
