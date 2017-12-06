@@ -1,3 +1,1 @@
-C:\Users\pedro\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-1\173.3727.83\bin\cmake\bin\cmake.exe -E remove -f CMakeFiles\T1_ORI.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\T1_ORI.dir/objects.a @CMakeFiles\T1_ORI.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\T1_ORI.dir/objects.a -Wl,--no-whole-archive  -o T1_ORI.exe -Wl,--out-implib,libT1_ORI.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\T1_ORI.dir\linklibs.rsp
+/usr/bin/c++  -g   CMakeFiles/T1_ORI.dir/main.cpp.o CMakeFiles/T1_ORI.dir/BTreeNode.cpp.o CMakeFiles/T1_ORI.dir/GerenciadorDeBlocos.cpp.o CMakeFiles/T1_ORI.dir/BTree.cpp.o  -o T1_ORI 

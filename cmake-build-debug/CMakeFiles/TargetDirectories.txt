@@ -1,3 +1,3 @@
-C:/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir
-C:/T2-ORI/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/T2-ORI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pedro/CLionProjects/T2-ORI/cmake-build-debug/CMakeFiles/T1_ORI.dir
