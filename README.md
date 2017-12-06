@@ -10,8 +10,12 @@
   - Em seguida digite "make"
   - Execute o arquivo T2_ORI
   
-### Grupo:
+### Grupo
   - João Pedro São Gregorio Silva, 726549
   - Marcelo Huffenbaecher, 725813
   - Alisson Hayasi, 726494
   
+### Fonte
+  - http://www.geeksforgeeks.org/b-tree-set-1-introduction-2/
+  - http://www.geeksforgeeks.org/b-tree-set-1-insert-2/
+  - http://www.geeksforgeeks.org/b-tree-set-3delete/
