@@ -21,10 +21,9 @@ BTree::BTree(int _t, const char *_nomeArquivo) : gerenciador(
 
 // Função para imprimir a árvore
 void BTree::traverse() {
-    if (atual != -1) {
-        int indice = 0;
-        BTreeNode bTreeNode;
-        gerenciador.CarregarBloco(indice, &bTreeNode);
+    if (atual >= 0) {
+        BTreeNode bTreeNode(t, false,&gerenciador);
+        gerenciador.CarregarBloco(atual, &bTreeNode);
         bTreeNode.traverse();
 
     }
@@ -35,7 +34,7 @@ BTreeNode *BTree::search(int k) {
     if (atual < 0) {
         return nullptr;
     } else {
-        BTreeNode bTreeNode;
+        BTreeNode bTreeNode(t,true,&gerenciador);
         gerenciador.CarregarBloco(0, &bTreeNode);
         bTreeNode.search(k);
     }
@@ -53,12 +52,12 @@ void BTree::insert(int k) {
         delete (bTreeNode);
     } else // Se não é uma árvore vazia
     {
-        BTreeNode *raiz = new BTreeNode;
+        BTreeNode *raiz = new BTreeNode(t, false, &gerenciador);
         gerenciador.CarregarBloco(atual, raiz);
         // Se a raíz estiver cheia, o nó é dividido e a árvore cresce
         if (raiz->numero_chaves >= 2 * raiz->ordem - 1) {
 
-            BTreeNode *novo_pai = new BTreeNode(t, true, &gerenciador, gerenciador.UltimoIndice());
+            BTreeNode *novo_pai = new BTreeNode(t, false, &gerenciador, atual+2);
 
             // Torna a velha raíz um nó filho da nova raíz
             novo_pai->filhos[0] = atual;

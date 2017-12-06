@@ -39,8 +39,8 @@ void BTreeNode::traverse() {
     for (i = 0; i < numero_chaves; i++) {
         // Se não for um nó folha, percorre primeiro a árvore apontada por cada uma das filhos
         if (leaf == false) {
-            BTreeNode no_apropriado;
-            gerenciador->CarregarBloco(i, &no_apropriado);
+            BTreeNode no_apropriado(ordem, false, gerenciador);
+            gerenciador->CarregarBloco(filhos[i], &no_apropriado);
             no_apropriado.traverse();
         }
         std::cout << " " << chaves[i];
@@ -48,8 +48,8 @@ void BTreeNode::traverse() {
 
     // Imprime a árvore apontada pela ultima chave
     if (leaf == false) {
-        BTreeNode no_apropriado;
-        gerenciador->CarregarBloco(i, &no_apropriado);
+        BTreeNode no_apropriado(ordem, leaf, gerenciador);
+        gerenciador->CarregarBloco(filhos[i], &no_apropriado);
         no_apropriado.traverse();
     }
 }
@@ -70,7 +70,7 @@ BTreeNode *BTreeNode::search(int k) {
         return nullptr;
 
     // Desce no nó filho apropriado
-    BTreeNode no_apropriado;
+    BTreeNode no_apropriado(ordem, leaf, gerenciador);
     gerenciador->CarregarBloco(i, &no_apropriado);
     return no_apropriado.search(k);
 }
@@ -96,7 +96,7 @@ void BTreeNode::insertNonFull(int k) {
             i--;
 
         // Verifica se o nó filho encontrado já está cheio
-        BTreeNode *no_encontrado = new BTreeNode;
+        BTreeNode *no_encontrado = new BTreeNode(ordem, leaf, gerenciador);
         gerenciador->CarregarBloco(filhos[i + 1], no_encontrado);
         if (no_encontrado->numero_chaves == 2 * ordem - 1) {
             // Se estiver cheio, o divide
@@ -105,8 +105,13 @@ void BTreeNode::insertNonFull(int k) {
             // Depois de dividir, decide qual nó novo recebe a chave
             if (chaves[i + 1] < k)
                 i++;
+            BTreeNode *local_insercao = new BTreeNode(ordem, leaf, gerenciador);
+            gerenciador->CarregarBloco(filhos[i + 1], local_insercao);
+            local_insercao->insertNonFull(k);
+            delete(local_insercao);
+        } else {
+            no_encontrado->insertNonFull(k);
         }
-        no_encontrado->insertNonFull(k);
         delete (no_encontrado);
     }
 }
@@ -116,13 +121,13 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
     // Quem chama esse metodo vai ser o novo pai de dois novos nós
     // Cria um novo nó que vai receber ordem-1 filhos de no_doador (mínimo de filhos)
     // Um dos nós que vai receber metade dos elementos
-    BTreeNode *no_receptor = new BTreeNode(no_doador->ordem, no_doador->leaf, gerenciador, indice_no_arquivo + 1);
+
+    BTreeNode *no_receptor = new BTreeNode(no_doador->ordem, no_doador->leaf, gerenciador, gerenciador->UltimoIndice());
     no_receptor->numero_chaves = ordem - 1;
 
     // Copia as últimas ordem-1 filhos de no_doador para o novo nó
     for (int j = 0; j < ordem - 1; j++) {
         no_receptor->chaves[j] = no_doador->chaves[j + ordem];
-        no_doador->chaves[j + ordem] = 0;
     }
 
 
@@ -130,7 +135,6 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
     if (no_doador->leaf == false) {
         for (int j = 0; j < ordem; j++) {
             no_receptor->filhos[j] = no_doador->filhos[j + ordem];
-            no_receptor->filhos[j] = -1;
         }
     }
 
@@ -152,7 +156,7 @@ void BTreeNode::splitChild(int i, BTreeNode *no_doador) {
     chaves[i] = no_doador->chaves[ordem - 1];
 
     // Incrementa o número de filhos deste nó já que uma nova foi inserida
-    numero_chaves = numero_chaves + 1;
+    numero_chaves++;
     delete (no_receptor);
 }
 
@@ -167,13 +171,13 @@ BTreeNode::~BTreeNode() {
 }
 
 fstream &operator<<(fstream &os, const BTreeNode &node) {
-    os << node.ordem << '|';
-    os << node.numero_chaves << '|';
-    for (int i = 0; i < node.ordem * 2 - 1; i++)
-        os << node.chaves[i] << '|';
+    os << node.ordem << "|";
+    os << node.numero_chaves << "|";
+    for (int i = 0; i < node.numero_chaves; i++)
+        os << node.chaves[i] << "|";
     for (int i = 0; i < node.ordem * 2; i++)
-        os << node.filhos[i] << '|';
-    os << node.leaf << '|';
+        os << node.filhos[i] << "|";
+    os << node.leaf << "|";
     os << node.indice_no_arquivo;
     return os;
 }

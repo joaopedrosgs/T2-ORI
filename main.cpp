@@ -6,18 +6,12 @@
 
 int main() {
     const char* NomeArquivo = "teste";
-    BTree a(2, NomeArquivo);
-    a.insert(20);
-    a.insert(3);
-
-    a.insert(6);
-
-    a.insert(31);
-
-    a.insert(32);
-
-
-    a.traverse();
+    BTree a(3, NomeArquivo);
+    for(int i=0; i<25; i++) {
+        int random = rand() % 200;
+        a.insert(random);
+    }
+    //a.traverse();
 
 
     return 0;

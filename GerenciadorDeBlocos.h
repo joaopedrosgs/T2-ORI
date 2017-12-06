@@ -20,10 +20,11 @@ class GerenciadorDeBlocos {
     fstream arquivo;
 
     bool ehValido();
-    void novoBlocoEmIndice(int x);
+    void zerarBlocoEm(int x);
 
 
 public:
+    int GetTamanhoBloco();
 
     GerenciadorDeBlocos(int tamanhoBloco, const char *nomeArquivo);
 
